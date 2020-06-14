@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+i = 0;
+$(document).ready(function(){
+var perc=0;
+var bl=0;
+var sl=0;
+var alpha=0;
+var ualpha=0;
+var symb = 0;
+var num = 0;
+var c1=0;
+var c2=0;
+var c3=0;
+var c4=0;
+var c5=0;
+var c6=0;
+var num1=0;
+ var alpha1=0;
+  var ualpha1=0;
+  var sl1=0;
+  var bl1=0;
+   var symb1=0;
+  $("input").keyup(function(){
+    var x = document.getElementById("pas").value;
+    var l = x.charAt(x.length-1);
+    $("span").text(l);
+    
+    
+    if(l>='0' && l<='9'){
+    if(c1==0){
+    num1=x.length; c1++;}
+    num=16.7;}
+    
+    
+  if(l>='a' && l<='z'){
+   if(c2==0){
+     alpha1=x.length; c2++;}
+    alpha=16.7;}
+    
+    
+     if(l>='A' && l<='Z'){
+     if(c3==0){
+    ualpha1=x.length; c3++;}
+    ualpha=16.7;}
+    
+    
+     if(x.length>=8){
+     if(c4==0){
+    sl1=x.length; c4++;}
+    sl=16.7;}
+    
+    
+     if(x.length>=13){
+     if(c5==0){
+     bl1=x.length; c5++;}
+    bl=16.7;}
+    
+   if(l=='!' ||l=='@' ||l=='#' || l=='$' ||l=='%' || l=='&' ||l=='*' ||l=='/' ||
+    l=='+' ||l=='-'){
+    if(c6==0){
+     symb1=x.length; c6++;}
+    symb=16.7;}
+    
+    
+    var key = event.which || event.keyCode || event.charCode;
+
+if(key == 8) {
+
+var bb = x.length;
+
+if(bb<=num1-1){
+num=0;
+c1=0;
+}
+if(bb<=sl1-1){
+sl=0;
+c4=0;
+}
+if(bb<=bl1-1){
+bl=0;
+c5=0;
+}
+if(bb<=alpha1-1){
+alpha=0;
+c2=0;
+}
+if(bb<=ualpha1-1){
+ualpha=0;
+c3=0;
+}
+if(bb<=symb1-1){
+symb=0;
+c6=0;
+}
+
+}
+
+
+    perc =bl+sl+alpha+ualpha+symb+num;
+   if(perc<=52) {
+   $( ".progress-bar" ).css('background', 'red');
+   } 
+   if(perc>52){
+    $( ".progress-bar" ).css('background', 'orange');
+   }
+   if(x.length>=13 && perc>52) {
+   $( ".progress-bar" ).css('background', 'green');
+   } 
+   if(x.length>=13 && perc<52) {
+   $( ".progress-bar" ).css('background', 'orange');
+   } 
+   
+   if(c3>0){
+   //alert("dscdc");
+   document.getElementById("u").style.color="green";
+   }
+   else{
+     document.getElementById("u").style.color="red";
+   }
+   
+   
+   if(c1>0){
+   //alert("dscdc");
+   document.getElementById("n").style.color="green";
+   }
+   else{
+     document.getElementById("n").style.color="red";
+   }
+   
+    if(c2>0){
+   //alert("dscdc");
+   document.getElementById("lo").style.color="green";
+   }
+   else{
+     document.getElementById("lo").style.color="red";
+   }
+   if(c4>0){
+   //alert("dscdc");
+   document.getElementById("sl2").style.color="green";
+   }
+   else{
+     document.getElementById("sl2").style.color="red";
+   }
+   
+   if(c5>0){
+   //alert("dscdc");
+   document.getElementById("bl2").style.color="green";
+   }
+   else{
+     document.getElementById("bl2").style.color="red";
+   }
+   
+   if(c6>0){
+   //alert("dscdc");
+   document.getElementById("sy2").style.color="green";
+   }
+   else{
+     document.getElementById("sy2").style.color="red";
+   }
+   
+   
+   document.querySelector(".progress-bar").style.width = perc + "%";
+  });
+});
+    </script><style>
+    p{
+        margin-left: 43%;
+    }
+    #ip{
+        margin-left: 25%;
+    }
+    h2{
+        margin-left: 35%;
+    }
+    </style>
+</head>
+<body style="background-image: url(https://images.pexels.com/photos/743986/pexels-photo-743986.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1000) ">
+
+<div class="container"><br>
+  <h2>Password Strength Indicator</h2>
+  
+ <br>
+ 
+ <h3><p id="ip">Enter your Password: <input type="password" name="pass" value="" id="pas" autofocus>
+    </p></h3><br><br><br>
+ 
+  <div class="progress" style="height:30px">
+    <div class="progress-bar" style="width:0%;height:30px"></div>
+  </div>
+  
+</div><br><br>
+    <h4> <p id="u" style="color:red;">Upper Case Letters</p></h4>
+  <h4><p id="n" style="color:red;">Numeric Characters</p></h4>
+  <h4><p id="lo" style="color:red;">Lower Case Letters</p></h4>
+  <h4><p id="sl2" style="color:red;">At Least 8 Characters</p></h4>
+  <h4> <p id="bl2" style="color:red;">At Least 13 Characters</p></h4>
+   <h4> <p id="sy2" style="color:red;">Special Symbols</p></h4>
+
+</body>
+</html>
